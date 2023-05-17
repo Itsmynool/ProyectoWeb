@@ -1,2 +1,2 @@
 # ProyectoWeb
-Proyecto con React web
+Proyecto con React
