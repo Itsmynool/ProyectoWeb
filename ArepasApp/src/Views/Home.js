@@ -5,6 +5,11 @@ export const Home = () => {
   const [products, setProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [productsPerPage] = useState(3);
+  const [selectedQuantities, setSelectedQuantities] = useState({});
+  const indexOfLastProduct = currentPage * productsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+  const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
+
 
   useEffect(() => {
     fetch('http://localhost:8000/products')
@@ -13,14 +18,36 @@ export const Home = () => {
       .catch((error) => console.error(error));
   }, []);
 
-  // Obtiene los índices de los productos correspondientes a la página actual
-  const indexOfLastProduct = currentPage * productsPerPage;
-  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
+  const handleQuantityChange = (productId, quantity) => {
+    setSelectedQuantities((prevQuantities) => ({
+      ...prevQuantities,
+      [productId]: quantity,
+    }));
+  };
 
-  // Cambia de página
+  const handleAddToCart = (productId) => {
+    const quantity = selectedQuantities[productId] || 0;
+    console.log(`Product ${productId} added to cart with quantity: ${quantity}`);
+  };
+
+  const handleViewMore = (productId) => {
+    console.log(`View more details for product ${productId}`);
+  };
+
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
+  };
+
+  const renderProductImage = (image) => {
+    return <Card.Img variant="top" src={image} alt="Product" style={{ width: '100%', height: '200px', objectFit: 'cover' }} />;
+  };
+
+  const renderProductInfo = (info) => {
+    return info.length > 50 ? info.substring(0, 50) + '...' : info;
+  };
+
+  const renderProductPrice = (price) => {
+    return `$${price.toFixed(2)}`;
   };
 
   return (
@@ -30,18 +57,32 @@ export const Home = () => {
         {currentProducts.map((product) => (
           <Col key={product.id} md={4} className="mb-4">
             <Card style={{ backgroundColor: '#f2f2f2', border: '1px solid black' }}>
-              <Card.Img variant="top" src={product.image} alt={product.name} />
+              {renderProductImage(product.image)}
               <Card.Body>
                 <Card.Title>{product.name}</Card.Title>
                 <Card.Text style={{ fontSize: '0.8rem', fontFamily: 'Arial', fontWeight: 'normal' }}>
-                  {product.info}
+                  {renderProductInfo(product.info)}
                 </Card.Text>
                 <Card.Text style={{ fontSize: '1.5rem', fontFamily: 'Arial', fontWeight: 'bold' }}>
-                  ${product.price}
+                  {renderProductPrice(product.price)}
                 </Card.Text>
                 <div className="d-flex justify-content-between align-items-center">
-                  <Button variant="primary" className="me-2">Añadir al carrito</Button>
-                  <Button variant="success">Comprar</Button>
+                  <div className="d-flex align-items-center">
+                    <div className="me-2">
+                      <input
+                        type="number"
+                        min="0"
+                        value={selectedQuantities[product.id] || ''}
+                        onChange={(e) => handleQuantityChange(product.id, e.target.value)}
+                      />
+                    </div>
+                    <Button variant="primary" onClick={() => handleAddToCart(product.id)}>
+                      Añadir al carrito
+                    </Button>
+                  </div>
+                  <Button variant="success" onClick={() => handleViewMore(product.id)}>
+                    Ver más
+                  </Button>
                 </div>
               </Card.Body>
             </Card>
