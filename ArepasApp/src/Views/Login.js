@@ -7,7 +7,7 @@ import { UserContext } from '../components/UserContext';
 export const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const { updateUser } = useContext(UserContext); // Importa y utiliza useContext para acceder al contexto
+  const { updateUser } = useContext(UserContext);
   const navigate = useNavigate();
 
   const proceedLogin = (e) => {
@@ -21,9 +21,9 @@ export const Login = () => {
           } else {
             const user = resp[0];
             if (user.password === password && user.username === username) {
-              updateUser(user.id); // Actualizar el usuario en el contexto
+              updateUser(user.id);
               toast.success('Inicio de sesión exitoso');
-              navigate('/home'); // Redireccionar al "Home"
+              navigate('/home');
             } else {
               toast.error('Credenciales incorrectas');
             }
@@ -34,7 +34,6 @@ export const Login = () => {
         });
     }
   };
-  
 
   const validate = () => {
     let result = true;
@@ -88,18 +87,18 @@ export const Login = () => {
                     Ingresar
                   </Button>
                 </div>
-                </Form>
-                  </Card.Body>
-                  <Card.Footer className="text-center">
-                    <p>
-                      No tienes cuenta? <Link to="/register">Regístrate</Link>
-                    </p>
-                  </Card.Footer>
-                  </Card>
-                  </Col>
-                  </Row>
-                  </Container>
-                    ) ;
-                };
+              </Form>
+            </Card.Body>
+            <Card.Footer className="text-center">
+              <p>
+                No tienes cuenta? <Link to="/register">Regístrate</Link>
+              </p>
+            </Card.Footer>
+          </Card>
+        </Col>
+      </Row>
+    </Container>
+  );
+};
 
 export default Login;

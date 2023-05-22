@@ -9,6 +9,17 @@ import { Register } from './Views/Register';
 import { Users } from './components/Users';
 import { NavigationBar } from './components/NavigationBar';
 import { UserProvider } from './components/UserContext';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import ReactDOM from 'react-dom';
+
+ReactDOM.render(
+  <React.StrictMode>
+    <App />
+    <ToastContainer position="top-right" />
+  </React.StrictMode>,
+  document.getElementById('root')
+);
 
 function App() {
   return (
