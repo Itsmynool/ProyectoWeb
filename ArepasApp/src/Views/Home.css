@@ -1,5 +1,6 @@
 .quantity-container {
-    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
   }
   
   .quantity-label {
@@ -13,7 +14,7 @@
     font-weight: bold;
   }
   .quantity-text {
-    margin-right: 5px;
+    margin: 0 10px;
   }
   .quantity-container .quantity-button {
     color: #fff;
@@ -24,12 +25,27 @@
     margin: 0 3px;
   }
   .quantity-text {
-    margin-right: 5px;
+    margin: 0 10px;
   }
   .add-to-cart-button {
     margin-top: 10px;
     width: 100%;
   }
+  .floating-cart-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+  }
+  .home-container {
+    text-align: center;
+  }
+  .cart-icon {
+    font-size: 24px;
+    vertical-align: middle;
+    margin-right: 5px;
+  }
+  
   
   
   .quantity-container .quantity-button:hover {
@@ -43,5 +59,8 @@
   .add-to-cart-button {
     margin-top: 10px;
     width: 100%;
+  }
+  .modal-footer {
+    justify-content: space-between;
   }
   

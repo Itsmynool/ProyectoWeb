@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Card, Button, Pagination, Modal } from 'react-bootstrap';
+import { BsCart3 } from 'react-icons/bs';
 import './Home.css';
 
 export const Home = () => {
@@ -158,6 +159,16 @@ export const Home = () => {
             </Pagination.Item>
           ))}
       </Pagination>
+
+      <div style={{ position: 'fixed', bottom: '20px', right: '20px' }}>
+        <Button
+          variant="primary"
+          size="lg"
+          style={{ borderRadius: '50%', width: '60px', height: '60px' }}
+        >
+          <BsCart3 style={{ fontSize: '1.5rem' }} />
+        </Button>
+      </div>
 
       <Modal show={showModal} onHide={handleModalClose}>
         {selectedProduct && (
