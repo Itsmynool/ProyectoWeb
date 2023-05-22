@@ -13,7 +13,6 @@ export const Home = () => {
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
   const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
 
-
   useEffect(() => {
     fetch('http://localhost:8000/products')
       .then((res) => res.json())
@@ -45,12 +44,23 @@ export const Home = () => {
     setSelectedProduct(null);
   };
 
+  const handleBuy = (productId) => {
+    console.log(`Product ${productId} purchased`);
+  };
+
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
 
   const renderProductImage = (image) => {
-    return <Card.Img variant="top" src={image} alt="Product" style={{ width: '100%', height: '200px', objectFit: 'cover' }} />;
+    return (
+      <Card.Img
+        variant="top"
+        src={image}
+        alt="Product"
+        style={{ width: '100%', height: '200px', objectFit: 'cover' }}
+      />
+    );
   };
 
   const renderProductInfo = (info) => {
@@ -83,14 +93,28 @@ export const Home = () => {
                 </Card.Text>
                 <div className="d-flex justify-content-between align-items-center">
                   <div className="d-flex align-items-center quantity-container">
-                    <Button variant="outline-primary" size="sm" className="quantity-button" onClick={() => handleQuantityChange(product.id, (selectedQuantities[product.id] || 0) - 1)}>
+                    <Button
+                      variant="outline-primary"
+                      size="sm"
+                      className="quantity-button"
+                      onClick={() =>
+                        handleQuantityChange(product.id, (selectedQuantities[product.id] || 0) - 1)
+                      }
+                    >
                       -
                     </Button>
                     <div className="quantity-label">
                       <span className="quantity-text">Cantidad:</span>
                       <span className="quantity-value">{selectedQuantities[product.id] || 0}</span>
                     </div>
-                    <Button variant="outline-primary" size="sm" className="quantity-button" onClick={() => handleQuantityChange(product.id, (selectedQuantities[product.id] || 0) + 1)}>
+                    <Button
+                      variant="outline-primary"
+                      size="sm"
+                      className="quantity-button"
+                      onClick={() =>
+                        handleQuantityChange(product.id, (selectedQuantities[product.id] || 0) + 1)
+                      }
+                    >
                       +
                     </Button>
                   </div>
@@ -98,8 +122,21 @@ export const Home = () => {
                     Ver más
                   </Button>
                 </div>
-                <div className="d-flex justify-content-between align-items-center">
-                  <Button variant="primary" size="sm" className="add-to-cart-button" onClick={() => handleAddToCart(product.id)}>
+                <div className="d-flex justify-content-between align-items-center mt-2">
+                  <Button
+                    variant="primary"
+                    size="sm"
+                    onClick={() => handleBuy(product.id)}
+                    className="mr-auto"
+                  >
+                    Comprar
+                  </Button>
+                  <Button
+                    variant="primary"
+                    size="sm"
+                    onClick={() => handleAddToCart(product.id)}
+                    className="ml-auto"
+                  >
                     Añadir al carrito
                   </Button>
                 </div>
@@ -133,15 +170,18 @@ export const Home = () => {
                 {renderProductImage(selectedProduct.image)}
               </div>
               <div>{selectedProduct.info}</div>
-              <div style={{ fontSize: '1.4rem', fontWeight: 'bold' }}>{renderProductPrice(selectedProduct.price)}</div>
-              {/* Add additional information about the product here */}
-              <div className="d-flex justify-content-end mt-3">
-                <Button variant="primary" size="sm" className="add-to-cart-button" onClick={() => handleAddToCart(selectedProduct.id)}>
-                  Añadir al carrito
-                </Button>
+              <div style={{ fontSize: '1.4rem', fontWeight: 'bold' }}>
+                {renderProductPrice(selectedProduct.price)}
               </div>
+              {/* Add additional information about the product here */}
             </Modal.Body>
             <Modal.Footer>
+              <Button variant="primary" size="sm" onClick={() => handleBuy(selectedProduct.id)}>
+                Comprar
+              </Button>
+              <Button variant="primary" size="sm" onClick={() => handleAddToCart(selectedProduct.id)}>
+                Añadir al carrito
+              </Button>
               <Button variant="secondary" onClick={handleModalClose}>
                 Cerrar
               </Button>
@@ -152,3 +192,5 @@ export const Home = () => {
     </Container>
   );
 };
+
+export default Home;
