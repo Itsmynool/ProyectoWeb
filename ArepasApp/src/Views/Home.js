@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Card, Button, Pagination } from 'react-bootstrap';
-import './Home.css'; // Importa el archivo CSS para los estilos personalizados
+import './Home.css';
 
 export const Home = () => {
   const [products, setProducts] = useState([]);
@@ -20,9 +20,10 @@ export const Home = () => {
   }, []);
 
   const handleQuantityChange = (productId, quantity) => {
+    const newQuantity = Math.max(0, quantity); // Prevent quantity from going below zero
     setSelectedQuantities((prevQuantities) => ({
       ...prevQuantities,
-      [productId]: quantity,
+      [productId]: newQuantity,
     }));
   };
 
@@ -68,23 +69,25 @@ export const Home = () => {
                   {renderProductPrice(product.price)}
                 </Card.Text>
                 <div className="d-flex justify-content-between align-items-center">
-                  <div className="d-flex align-items-center">
+                  <div className="d-flex align-items-center quantity-container">
+                    <Button variant="outline-primary" size="sm" className="quantity-button" onClick={() => handleQuantityChange(product.id, (selectedQuantities[product.id] || 0) - 1)}>
+                      -
+                    </Button>
                     <div className="me-2">
                       <span className="quantity-label">Cantidad:</span>
-                      <input
-                        type="number"
-                        min="0"
-                        value={selectedQuantities[product.id] || ''}
-                        onChange={(e) => handleQuantityChange(product.id, e.target.value)}
-                        className="quantity-input" // Agrega la clase CSS "quantity-input"
-                      />
+                      <span className="quantity-value">{selectedQuantities[product.id] || 0}</span>
                     </div>
-                    <Button variant="primary" size="sm" className="me-2" onClick={() => handleAddToCart(product.id)}> {/* Modifica el tamaño del botón a "sm" y agrega la clase CSS "me-2" */}
-                      Añadir al carrito
+                    <Button variant="outline-primary" size="sm" className="quantity-button" onClick={() => handleQuantityChange(product.id, (selectedQuantities[product.id] || 0) + 1)}>
+                      +
                     </Button>
                   </div>
-                  <Button variant="success" size="sm" onClick={() => handleViewMore(product.id)}> {/* Modifica el tamaño del botón a "sm" */}
+                  <Button variant="success" size="sm" onClick={() => handleViewMore(product.id)}>
                     Ver más
+                  </Button>
+                </div>
+                <div className="d-flex justify-content-between align-items-center">
+                  <Button variant="primary" size="sm" className="add-to-cart-button" onClick={() => handleAddToCart(product.id)}>
+                    Añadir al carrito
                   </Button>
                 </div>
               </Card.Body>
