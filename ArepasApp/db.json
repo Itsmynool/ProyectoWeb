@@ -15,5 +15,50 @@
         "securityCode": "578"
       }
     }
+  ],
+
+  "products": [
+    {
+      "id": 1,
+      "name": "Arepa de choclo",
+      "info": "Algunas personas señalan que se parecen a los panqueques. De hecho la diferencia en su preparación es que se hace con granos de maíz tierno, se agrega cuajada o queso campesino, para endulzar se hace con azúcar o panela.",
+      "price": 5500,
+      "image": "https://www.cdc.gov/foodsafety/es/images/chicken-1091281658.jpg?_=58385"
+    },
+    {
+      "id": 2,
+      "name": "Arepa boyacense",
+      "info": "La popularidad de esta arepa dulce de Boyacá ha hecho que llegue a diferentes regiones. Se hacen con harina de trigo y maíz.",
+      "price": 7800,
+      "image": "https://www.cdc.gov/foodsafety/es/images/chicken-1091281658.jpg?_=58385"
+    },
+    {
+      "id": 3,
+      "name": "Arepa paisa",
+      "info": "¿Sabías que Medellín es uno de los lugares donde más se comen arepas en Colombia? Esta arepa, por ejemplo, es hecha con maíz blanco trillado, y se caracteriza por ser muy delgadas.",
+      "price": 8000,
+      "image": "https://www.cdc.gov/foodsafety/es/images/chicken-1091281658.jpg?_=58385"
+    },
+    {
+      "id": 4,
+      "name": "Arepa e' huevo",
+      "info": "También son conocidas como arepas costeñas y para prepararlas hay que usar una técnica que no todos se atreven a probar.",
+      "price": 5700,
+      "image": "https://www.cdc.gov/foodsafety/es/images/chicken-1091281658.jpg?_=58385"
+    },
+    {
+      "id": 5,
+      "name": "Arepa valluna",
+      "info": "Son similares a las paisas, solo que un poco más gruesas, hechas con maíz trillado.",
+      "price": 6000,
+      "image": "https://www.cdc.gov/foodsafety/es/images/chicken-1091281658.jpg?_=58385"
+    },
+    {
+      "id": 6,
+      "name": "Arepa santandereana",
+      "info": "Arepa santandereana",
+      "price": 7600,
+      "image": "https://www.cdc.gov/foodsafety/es/images/chicken-1091281658.jpg?_=58385"
+    }
   ]
 }
