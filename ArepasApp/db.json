@@ -1,0 +1,19 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "firstName": "Juan",
+      "lastName": "Bolaños",
+      "username": "ItsMynol",
+      "password": "12345",
+      "email": "juancamilo456123@gmail.com",
+      "address": "Cocodrillo1",
+      "phone": "31147596544",
+      "paymentMethod": {
+        "cardType": "Visa",
+        "cardNumber": "44512554052525",
+        "securityCode": "578"
+      }
+    }
+  ]
+}
