@@ -1,11 +1,11 @@
 .quantity-container {
-    display: flex;
-    align-items: center;
+    margin-bottom: 10px;
   }
   
   .quantity-label {
-    font-size: 0.8rem;
-    margin-right: 5px;
+    display: flex;
+    align-items: center;
+     margin: 0 10px;
   }
   
   .quantity-value {
@@ -21,10 +21,21 @@
     padding: 0.2rem 0.4rem;
     margin: 0 3px;
   }
+  .quantity-text {
+    margin-right: 5px;
+  }
+  .add-to-cart-button {
+    margin-top: 10px;
+    width: 100%;
+  }
+  
   
   .quantity-container .quantity-button:hover {
     background-color: #0069d9;
     border-color: #0062cc;
+  }
+  .modal-body {
+    text-align: center;
   }
   
   .add-to-cart-button {

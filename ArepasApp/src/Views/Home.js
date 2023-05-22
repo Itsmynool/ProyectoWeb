@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Row, Col, Card, Button, Pagination } from 'react-bootstrap';
+import { Container, Row, Col, Card, Button, Pagination, Modal } from 'react-bootstrap';
 import './Home.css';
 
 export const Home = () => {
@@ -7,6 +7,8 @@ export const Home = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [productsPerPage] = useState(3);
   const [selectedQuantities, setSelectedQuantities] = useState({});
+  const [showModal, setShowModal] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState(null);
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
   const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
@@ -33,7 +35,14 @@ export const Home = () => {
   };
 
   const handleViewMore = (productId) => {
-    console.log(`View more details for product ${productId}`);
+    const product = products.find((p) => p.id === productId);
+    setSelectedProduct(product);
+    setShowModal(true);
+  };
+
+  const handleModalClose = () => {
+    setShowModal(false);
+    setSelectedProduct(null);
   };
 
   const paginate = (pageNumber) => {
@@ -73,8 +82,8 @@ export const Home = () => {
                     <Button variant="outline-primary" size="sm" className="quantity-button" onClick={() => handleQuantityChange(product.id, (selectedQuantities[product.id] || 0) - 1)}>
                       -
                     </Button>
-                    <div className="me-2">
-                      <span className="quantity-label">Cantidad:</span>
+                    <div className="quantity-label">
+                      <span className="quantity-text">Cantidad:</span>
                       <span className="quantity-value">{selectedQuantities[product.id] || 0}</span>
                     </div>
                     <Button variant="outline-primary" size="sm" className="quantity-button" onClick={() => handleQuantityChange(product.id, (selectedQuantities[product.id] || 0) + 1)}>
@@ -108,6 +117,34 @@ export const Home = () => {
             </Pagination.Item>
           ))}
       </Pagination>
+
+      <Modal show={showModal} onHide={handleModalClose}>
+        {selectedProduct && (
+          <>
+            <Modal.Header closeButton>
+              <Modal.Title>{selectedProduct.name}</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <div className="d-flex justify-content-center mb-3">
+                {renderProductImage(selectedProduct.image)}
+              </div>
+              <div>{selectedProduct.info}</div>
+              <div>{renderProductPrice(selectedProduct.price)}</div>
+              {/* Add additional information about the product here */}
+              <div className="d-flex justify-content-end mt-3">
+                <Button variant="primary" size="sm" className="add-to-cart-button" onClick={() => handleAddToCart(selectedProduct.id)}>
+                  Añadir al carrito
+                </Button>
+              </div>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={handleModalClose}>
+                Cerrar
+              </Button>
+            </Modal.Footer>
+          </>
+        )}
+      </Modal>
     </Container>
   );
 };
