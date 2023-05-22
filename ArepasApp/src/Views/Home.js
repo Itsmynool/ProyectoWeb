@@ -58,7 +58,11 @@ export const Home = () => {
   };
 
   const renderProductPrice = (price) => {
-    return `$${price.toFixed(2)}`;
+    return (
+      <span style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>
+        ${price.toFixed(2)}
+      </span>
+    );
   };
 
   return (
@@ -129,7 +133,7 @@ export const Home = () => {
                 {renderProductImage(selectedProduct.image)}
               </div>
               <div>{selectedProduct.info}</div>
-              <div>{renderProductPrice(selectedProduct.price)}</div>
+              <div style={{ fontSize: '1.4rem', fontWeight: 'bold' }}>{renderProductPrice(selectedProduct.price)}</div>
               {/* Add additional information about the product here */}
               <div className="d-flex justify-content-end mt-3">
                 <Button variant="primary" size="sm" className="add-to-cart-button" onClick={() => handleAddToCart(selectedProduct.id)}>

@@ -12,7 +12,9 @@
     font-size: 0.8rem;
     font-weight: bold;
   }
-  
+  .quantity-text {
+    margin-right: 5px;
+  }
   .quantity-container .quantity-button {
     color: #fff;
     background-color: #007bff;
@@ -39,8 +41,7 @@
   }
   
   .add-to-cart-button {
+    margin-top: 10px;
     width: 100%;
-    font-size: 0.8rem;
-    margin-top: 5px;
   }
   
