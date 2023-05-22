@@ -3,31 +3,30 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Layout } from './Layout';
-import { NoMatch } from './components/NoMatch';
 import { Home } from './Views/Home';
 import { Login } from './Views/Login';
 import { Register } from './Views/Register';
 import { Users } from './components/Users';
 import { NavigationBar } from './components/NavigationBar';
+import { UserProvider } from './components/UserContext';
 
 function App() {
   return (
     <div className="App">
-      <React.Fragment>
-        <NavigationBar />
-        <Layout>
-          <Router>
+      <Router>
+        <UserProvider>
+          <NavigationBar />
+          <Layout>
             <Routes>
-              <Route exact path="/" element={<Home/>} />
-              <Route path="/Home" element={<Home/>} />
-              <Route path="/Users" element={<Users/>} />
-              <Route path="/Login" element={<Login/>} />
-              <Route path="/Register" element={<Register/>} />
-              <Route element={<NoMatch/>} />
+              <Route path="/" element={<Home />} />
+              <Route path="/home" element={<Home />} />
+              <Route path="/users" element={<Users />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
             </Routes>
-          </Router>
-        </Layout>
-      </React.Fragment>
+          </Layout>
+        </UserProvider>
+      </Router>
     </div>
   );
 }
