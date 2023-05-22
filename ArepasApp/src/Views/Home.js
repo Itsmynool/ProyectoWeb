@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Card, Button, Pagination } from 'react-bootstrap';
+import './Home.css'; // Importa el archivo CSS para los estilos personalizados
 
 export const Home = () => {
   const [products, setProducts] = useState([]);
@@ -69,18 +70,20 @@ export const Home = () => {
                 <div className="d-flex justify-content-between align-items-center">
                   <div className="d-flex align-items-center">
                     <div className="me-2">
+                      <span className="quantity-label">Cantidad:</span>
                       <input
                         type="number"
                         min="0"
                         value={selectedQuantities[product.id] || ''}
                         onChange={(e) => handleQuantityChange(product.id, e.target.value)}
+                        className="quantity-input" // Agrega la clase CSS "quantity-input"
                       />
                     </div>
-                    <Button variant="primary" onClick={() => handleAddToCart(product.id)}>
+                    <Button variant="primary" size="sm" className="me-2" onClick={() => handleAddToCart(product.id)}> {/* Modifica el tamaño del botón a "sm" y agrega la clase CSS "me-2" */}
                       Añadir al carrito
                     </Button>
                   </div>
-                  <Button variant="success" onClick={() => handleViewMore(product.id)}>
+                  <Button variant="success" size="sm" onClick={() => handleViewMore(product.id)}> {/* Modifica el tamaño del botón a "sm" */}
                     Ver más
                   </Button>
                 </div>

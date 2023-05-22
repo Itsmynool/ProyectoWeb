@@ -1,0 +1,44 @@
+.custom-styles {
+    /* Agrega estilos personalizados aquí */
+  }
+  
+  .card-text {
+    font-size: 0.8rem; /* Tamaño de fuente para la información del producto */
+  }
+  
+  .price {
+    font-size: 1.2rem; /* Tamaño de fuente para el precio del producto */
+  }
+  
+  .quantity-input {
+    font-size: 0.8rem;
+    max-width: 50px;
+  }
+  
+  .quantity-container {
+    display: flex;
+    align-items: center;
+  }
+
+  .quantity-container .btn {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+  }
+
+  .quantity-container .btn:hover {
+    background-color: #0069d9;
+    border-color: #0062cc;
+  }
+  
+  .quantity-label {
+    font-size: 0.8rem;
+    margin-right: 5px;
+  }
+  @media (max-width: 576px) {
+    /* Estilos para dispositivos móviles */
+    .quantity-input {
+      max-width: 60px; /* Ancho máximo del contador en dispositivos móviles */
+    }
+  }
+  
