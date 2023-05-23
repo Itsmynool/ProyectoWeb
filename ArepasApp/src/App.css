@@ -36,3 +36,42 @@
     transform: rotate(360deg);
   }
 }
+
+
+
+
+
+.product-card {
+  background-color: #f2f2f2;
+  border: 1px solid black;
+}
+
+.product-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.product-info {
+  font-size: 0.8rem;
+  font-family: Arial;
+  font-weight: normal;
+}
+
+.product-price {
+  font-size: 1.5rem;
+  font-family: Arial;
+  font-weight: bold;
+}
+
+.quantity-input {
+  margin-right: 0.5rem;
+}
+
+.add-to-cart-button {
+  font-size: 0.8rem;
+}
+
+.view-more-button {
+  font-size: 0.8rem;
+}
