@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Container, Row, Col, Card, Form, Button } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -7,8 +7,14 @@ import { UserContext } from '../components/UserContext';
 export const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const { updateUser } = useContext(UserContext);
+  const { loggedIn, login } = useContext(UserContext);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (loggedIn) {
+      navigate('/Home');
+    }
+  }, [loggedIn, navigate]);
 
   const proceedLogin = (e) => {
     e.preventDefault();
@@ -21,9 +27,8 @@ export const Login = () => {
           } else {
             const user = resp[0];
             if (user.password === password && user.username === username) {
-              updateUser(user.id);
+              login(user);
               toast.success('Inicio de sesión exitoso');
-              navigate('/home');
             } else {
               toast.error('Credenciales incorrectas');
             }
