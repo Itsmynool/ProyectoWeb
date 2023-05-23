@@ -187,12 +187,6 @@ export const Home = () => {
               {/* Add additional information about the product here */}
             </Modal.Body>
             <Modal.Footer>
-              <Button variant="primary" size="sm" onClick={() => handleBuy(selectedProduct.id)}>
-                Comprar
-              </Button>
-              <Button variant="primary" size="sm" onClick={() => handleAddToCart(selectedProduct.id)}>
-                Añadir al carrito
-              </Button>
               <Button variant="secondary" onClick={handleModalClose}>
                 Cerrar
               </Button>
