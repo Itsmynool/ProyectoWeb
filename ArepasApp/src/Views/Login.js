@@ -64,7 +64,7 @@ export const Login = () => {
       <Row className="justify-content-center">
         <Col md={6} lg={5}>
           <Card>
-            <Card.Header className="bg-primary text-white text-center">
+            <Card.Header className="bg-warning text-white text-center">
               <h4>Iniciar sesión</h4>
             </Card.Header>
             <Card.Body>
@@ -97,7 +97,7 @@ export const Login = () => {
                   />
                 </Form.Group>
                 <div className="d-grid">
-                  <Button variant="primary" type="submit">
+                  <Button variant="primary" type="submit" className="bg-warning">
                     Ingresar
                   </Button>
                 </div>

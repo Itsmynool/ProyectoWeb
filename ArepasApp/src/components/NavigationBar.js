@@ -18,7 +18,7 @@ export const NavigationBar = () => {
           console.log('Error retrieving user data:', error);
         });
     }
-  }, [userId]);
+  }, [userId]); 
 
   return (
     <Navbar bg="warning" variant="dark" expand="md" className="navbar-container"> {/* Agrega la clase "navbar-container" */}

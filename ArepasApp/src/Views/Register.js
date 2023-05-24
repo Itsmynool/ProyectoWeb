@@ -67,7 +67,7 @@ export const Register = () => {
     <Row className="justify-content-center">
       <Col md={6} lg={5}>
         <Card>
-          <Card.Header className="bg-primary text-white text-center">
+          <Card.Header className="bg-warning text-white text-center">
             <h4>Registro</h4>
           </Card.Header>
           <Card.Body>
@@ -194,8 +194,7 @@ export const Register = () => {
                   onChange={(e) => setSecurityCode(e.target.value)}
                 />
               </Form.Group>
-
-              <Button variant="primary" onClick={handleRegister}>
+              <Button variant="primary" onClick={handleRegister} className="bg-warning">
                 Registrar
               </Button>
             </Form>

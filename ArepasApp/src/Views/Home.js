@@ -66,7 +66,7 @@ export const Home = () => {
   };
 
   const renderProductInfo = (info) => {
-    return info.length > 50 ? info.substring(0, 50) + '...' : info;
+    return info.length > 40 ? info.substring(0, 40) + '...' : info;
   };
 
   const renderProductPrice = (price) => {
@@ -120,7 +120,7 @@ export const Home = () => {
                       +
                     </Button>
                   </div>
-                  <Button variant="success" size="sm" onClick={() => handleViewMore(product.id)}>
+                  <Button variant="success" className='bg-warning' size="sm" onClick={() => handleViewMore(product.id)}>
                     Ver más
                   </Button>
                 </div>
