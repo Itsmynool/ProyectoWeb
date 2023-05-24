@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { Container, Row, Col, Card, Form, Button } from 'react-bootstrap';
+import { Container, Row, Col, Card, Form, Button, Alert } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { UserContext } from '../components/UserContext';
@@ -7,6 +7,7 @@ import { UserContext } from '../components/UserContext';
 export const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [showErrorAlert, setShowErrorAlert] = useState(false);
   const { loggedIn, login } = useContext(UserContext);
   const navigate = useNavigate();
 
@@ -23,6 +24,7 @@ export const Login = () => {
         .then((res) => res.json())
         .then((resp) => {
           if (resp.length === 0) {
+            setShowErrorAlert(true);
             toast.error('Por favor ingresa un usuario válido');
           } else {
             const user = resp[0];
@@ -30,11 +32,13 @@ export const Login = () => {
               login(user);
               toast.success('Inicio de sesión exitoso');
             } else {
+              setShowErrorAlert(true);
               toast.error('Credenciales incorrectas');
             }
           }
         })
         .catch((err) => {
+          setShowErrorAlert(true);
           toast.error('Inicio de sesión fallido');
         });
     }
@@ -64,6 +68,11 @@ export const Login = () => {
               <h4>Iniciar sesión</h4>
             </Card.Header>
             <Card.Body>
+              {showErrorAlert && (
+                <Alert variant="danger">
+                  Credenciales incorrectas o datos erróneos.
+                </Alert>
+              )}
               <Form onSubmit={proceedLogin}>
                 <Form.Group className="mb-3" controlId="username">
                   <Form.Label>Nombre de usuario</Form.Label>
@@ -96,7 +105,7 @@ export const Login = () => {
             </Card.Body>
             <Card.Footer className="text-center">
               <p>
-                No tienes cuenta? <Link to="/register">Regístrate</Link>
+                ¿No tienes una cuenta? <Link to="/register">Regístrate</Link>
               </p>
             </Card.Footer>
           </Card>

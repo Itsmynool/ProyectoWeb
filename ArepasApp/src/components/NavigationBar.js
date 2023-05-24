@@ -27,7 +27,7 @@ export const NavigationBar = () => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto"> {/* Agrega la clase "mr-auto" al contenedor de enlaces */}
             <Nav.Item>
-            <Image src="https://arepaselpaisapty.com/wp-content/uploads/2022/11/AREPAS-EL-PAISA-LOGO-FINAL-BLANCO-1024x1019.png" alt="Logo" width="50" height="50" /> {/* Ajusta las dimensiones del logo */}
+              <Nav.Link href="/Home" className="text-light"><Image src="https://arepaselpaisapty.com/wp-content/uploads/2022/11/AREPAS-EL-PAISA-LOGO-FINAL-BLANCO-1024x1019.png" alt="Logo" width="50" height="50" /> {/* Ajusta las dimensiones del logo */}</Nav.Link>
             </Nav.Item>
             {userId && (
               <Nav.Item>
